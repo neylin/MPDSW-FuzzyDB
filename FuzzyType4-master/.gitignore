@@ -1,0 +1,22 @@
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+JSqlParser/src/net/sf/jsqlparser/parser/CCJSqlParser.java
+JSqlParser/src/net/sf/jsqlparser/parser/CCJSqlParserConstants.java
+JSqlParser/src/net/sf/jsqlparser/parser/CCJSqlParserTokenManager.java
+JSqlParser/src/net/sf/jsqlparser/parser/ParseException.java
+JSqlParser/src/net/sf/jsqlparser/parser/SimpleCharStream.java
+JSqlParser/src/net/sf/jsqlparser/parser/Token.java
+JSqlParser/src/net/sf/jsqlparser/parser/TokenMgrError.java
+/FuzzyApp/nbproject/private/
+/FuzzyApp/build/
+/FuzzyApp/dist/
+/App/FuzzyGateway/nbproject/private/
+/App/FuzzyGateway/build/
+/App/FuzzyGateway/dist/
+
+*.pyc
+App/env_fuzzyapp/

@@ -1,0 +1,130 @@
+*************************************************************************
+*************************************************************************
+*******						  	WORLD							  *******
+*************************************************************************
+*************************************************************************
+
+TRIMESTRE ENERO-MARZO 2016
+Grupo:  Neylin Belisario
+		Paolangela Espinal
+		Nelson Saturno
+
+ ___________________________________
+|									|
+| PASOS A SEGUIR PARA CREAR LA BD	|
+|___________________________________|
+
+1) Creamos usuario
+>> sudo adduser fuzzy
+--Llenamos todos los campos con 'fuzzy' e indicamos que fuera superusuario
+
+2) Ingresamos a postgresql
+>> sudo -u postgres psql
+
+3) Creamos usuario dentro de postgresql
+>> create user fuzzy with password 'fuzzy' createdb;
+
+4) Creamos la base de datos fuzzy
+>> create database fuzzy;
+
+5) Asociamos la base de datos al usuario
+>> grant all privileges on database fuzzy to fuzzy;
+
+6) fuzzy debe ser super usuario
+>> alter user fuzzy with superuser;
+
+ ___________________________________
+|									|
+| PASOS A SEGUIR PARA CORRER LA BD	|
+|___________________________________|
+
+0) Para dropear BD
+>> java -jar dist/FuzzyDB.jar < drop_pokemon.sql
+-- Entrar en /src/sql_scripts/
+>> psql fuzzy fuzzy
+>> \i drop-schema.sql
+
+1) Para crear la base de datos
+-- Se debe estar en el directorio: FuzzyDB/src/sql_scripts/
+>> psql fuzzy fuzzy
+>> \i create-schema.sql
+
+2) Para correr la App FuzzyDB
+-- Se debe estar en el directorio: fuzzy-client
+>> parser.sh
+-- Ir al directorio FuzzyDB y ejecutar: 
+>> ant clean jar
+>> java -jar dist/FuzzyDB.jar (Si da error, hacer clean and build en NetBeans y run)
+
+3) Para crear dentro de la App FuzzyDB
+-- Se debe estar en el directorio: /FuzzyDB
+>> java -jar dist/FuzzyDB.jar < create-schema-world.sql
+
+4) Para llenar la BD
+>> java -jar dist/FuzzyDB.jar < inserts_country.sql
+>> java -jar dist/FuzzyDB.jar < inserts_country_language.sql 
+>> java -jar dist/FuzzyDB.jar < city_4.1.sql
+>> java -jar dist/FuzzyDB.jar < city_6.1.sql
+
+ ___________________________________
+|									|
+|			  CONSULTAS				|
+|___________________________________|
+
+-- Seleccion
+>> java -jar dist/FuzzyDB.jar < select2-1.sql
+>> java -jar dist/FuzzyDB.jar < select2-2.sql
+>> java -jar dist/FuzzyDB.jar < select2-3.sql
+>> java -jar dist/FuzzyDB.jar < select2-4.sql
+
+-- Ordenamiento
+>> java -jar dist/FuzzyDB.jar < orderby2-1.sql
+>> java -jar dist/FuzzyDB.jar < orderby2-2.sql
+>> java -jar dist/FuzzyDB.jar < orderby2-3.sql
+>> java -jar dist/FuzzyDB.jar < orderby2-4.sql
+
+-- Agrupamiento
+>> java -jar dist/FuzzyDB.jar < groupby2-1.sql
+>> java -jar dist/FuzzyDB.jar < groupby2-2.sql
+>> java -jar dist/FuzzyDB.jar < groupby2-3.sql
+>> java -jar dist/FuzzyDB.jar < groupby2-4.sql
+
+-- Postgres
+>> psql fuzzy fuzzy
+>> \i postgres2-1.sql
+>> \i postgres2-2.sql
+>> \i postgres2-3.sql
+
+ ___________________________________
+|									|
+|			 EXPERIMENTOS			|
+|___________________________________|
+
+1) Para correr pruebas en datos de volumen ALTO (desde sudo)
+>> wva.sh
+
+2) Para correr pruebas en datos de volumen BAJO (desde sudo)
+>> wvb.sh
+
+-- Estos scripts generaran sus respectivos archivos resultadoWVA*.txt y resultadoWVB*.txt
+
+3) Para generar los archivos .txt necesarios para R
+>> python generador_archivoR.py
+
+-- Este script genera los archivos experimento*.txt
+
+4) Correr en R para hacer ANOVA:
+-- Esto esta en los archivos experimento1.r pero por si acaso:
+>> experimento1 <- read.table("experimento1.txt", header = TRUE)
+>> attach(experimento1)
+>> experimento1.aov <- aov(T.Ejecucion~TipoConsulta*VolumenDatos,experimento1)
+>> summary(experimento1.aov)
+>> interaction.plot(response=T.Ejecucion,VolumenDatos,TipoConsulta,xlab="Volumen de Datos", 
+					ylab="Media del Tiempo de Ejecución",trace.label="Tipo de Consulta",
+					col=1:4,main="Caso Select-BD Pokemon")
+
+-- Esto se repite con experimento2,3y4.r
+
+-- Luego hacemos summary de cada experimento con:
+>> summary(experimento*.aov)
+

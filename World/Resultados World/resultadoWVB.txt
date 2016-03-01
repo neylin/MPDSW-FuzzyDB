@@ -1,0 +1,90 @@
+Base de datos World con volumen bajo
+ Caso select2-1
+
+real	0m19.646s
+user	0m4.399s
+sys	0m5.715s
+
+ Caso select2-2
+
+real	0m25.370s
+user	0m3.673s
+sys	0m1.681s
+
+ Caso select2-3
+
+real	0m12.140s
+user	0m2.766s
+sys	0m2.596s
+
+ Caso select2-4
+
+real	0m31.868s
+user	0m4.970s
+sys	0m3.992s
+
+ Caso groupby2-1
+
+real	0m4.538s
+user	0m1.030s
+sys	0m0.130s
+
+ Caso groupby2-2
+
+real	1m16.273s
+user	0m2.518s
+sys	0m1.134s
+
+ Caso groupby2-3
+
+real	0m4.932s
+user	0m0.715s
+sys	0m0.073s
+
+ Caso groupby2-4
+
+real	12m38.983s
+user	0m16.537s
+sys	0m11.790s
+
+ Caso orderby2-1
+
+real	0m17.667s
+user	0m3.695s
+sys	0m3.448s
+
+ Caso orderby2-2
+
+real	1m32.099s
+user	0m3.598s
+sys	0m1.622s
+
+ Caso orderby2-3
+
+real	0m12.528s
+user	0m2.919s
+sys	0m2.398s
+
+ Caso orderby2-4
+
+real	1m41.652s
+user	0m5.191s
+sys	0m4.131s
+
+ Caso postgres2-1
+
+real	0m7.867s
+user	0m0.340s
+sys	0m0.440s
+
+ Caso postgres2-2
+
+real	0m2.789s
+user	0m0.066s
+sys	0m0.050s
+
+ Caso postgres2-3
+
+real	0m9.167s
+user	0m0.379s
+sys	0m0.419s
